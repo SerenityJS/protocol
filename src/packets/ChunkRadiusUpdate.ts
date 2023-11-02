@@ -4,7 +4,7 @@ import { Encapsulated } from '../Encapsulated';
 
 @Packet(0x46, VarInt)
 class ChunkRadiusUpdate extends Encapsulated {
-	@Serialize(ZigZag) public chunkRadius!: number;
+	@Serialize(ZigZag) public radius!: number;
 }
 
 export { ChunkRadiusUpdate };
