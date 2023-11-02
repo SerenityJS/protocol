@@ -1,12 +1,12 @@
 import { Packet, Serialize } from '@serenityjs/raknet.js';
 import { VarInt } from 'binarystream.js';
 import { Encapsulated } from '../Encapsulated';
-import type { Item } from '../types';
-import { Items } from '../types';
+import type { ItemOld } from '../types';
+import { ItemsOld } from '../types';
 
 @Packet(0x91, VarInt)
 class CreativeContent extends Encapsulated {
-	@Serialize(Items) public items!: Item[];
+	@Serialize(ItemsOld) public items!: ItemOld[];
 }
 
 export { CreativeContent };

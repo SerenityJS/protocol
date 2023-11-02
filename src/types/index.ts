@@ -33,3 +33,5 @@ export * from './PlayerAttributes';
 export * from './RecipeIngredient';
 export * from './Items';
 export * from './Recipes';
+export * from './Items';
+export * from './ItemsOld';
