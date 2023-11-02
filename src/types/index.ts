@@ -28,3 +28,8 @@ export * from './PlayerAttributes';
 export * from './EntityAttributes';
 export * from './TextParameters';
 export * from './EntityLinks';
+export * from './Rotation';
+export * from './PlayerAttributes';
+export * from './RecipeIngredient';
+export * from './Items';
+export * from './Recipes';
