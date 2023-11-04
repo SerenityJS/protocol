@@ -11,6 +11,7 @@ import { Interact } from './Interact';
 import { LevelChunk } from './LevelChunk';
 import { Login } from './Login';
 import { ModalFormRequest } from './ModalFormRequest';
+import { ModalFormResponse } from './ModalFormResponse';
 import { MovePlayer } from './MovePlayer';
 import { NetworkChunkPublisherUpdate } from './NetworkChunkPublisherUpdate';
 import { NetworkSettings } from './NetworkSettings';
@@ -78,6 +79,7 @@ enum Packets {
 	ChunkRadiusUpdate = 0x46, // 70
 	// Gap
 	ModalFormRequest = 0x64, // 100
+	ModalFormResponse = 0x65, // 101
 	// Gap
 	SetLocalPlayerAsInitialized = 0x71, // 113
 	// Gap
@@ -138,6 +140,7 @@ const Packet = {
 	[Packets.ChunkRadiusUpdate]: ChunkRadiusUpdate,
 	// Gap
 	[Packets.ModalFormRequest]: ModalFormRequest,
+	[Packets.ModalFormResponse]: ModalFormResponse,
 	// Gap
 	[Packets.SetLocalPlayerAsInitialized]: SetLocalPlayerAsInitialized,
 	// Gap
