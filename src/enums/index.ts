@@ -14,3 +14,4 @@ export * from './PermissionLevel';
 export * from './Gamemode';
 export * from './Difficulty';
 export * from './FormCancelReason';
+export * from './FormTypes';
