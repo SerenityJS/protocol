@@ -1,11 +1,15 @@
 import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Short, Bool, UInt8, Float, Int32, LitString } from 'binarystream.js';
+import { Bool, Endianness, VarInt } from 'binarystream.js';
 import { Encapsulated } from '../Encapsulated';
+import { FormData, FormCanceledReason } from '../types';
 
 @Packet(0x65, VarInt)
-class ModelFormResponse extends Encapsulated {
-	@Serialize(VarInt) public formId!: number;
-	@Serialize(LitString) public formData!: string;
+class ModalFormResponse extends Encapsulated {
+	@Serialize(VarInt) public id!: number;
+	@Serialize(Bool) public hasData!: boolean;
+	@Serialize(FormData, Endianness.Big, 'hasData') public data!: string;
+	@Serialize(Bool) public canceled!: boolean;
+	@Serialize(FormCanceledReason, Endianness.Big, 'canceled') public cancelReason!: string;
 }
 
-export { ModelFormResponse };
+export { ModalFormResponse };
