@@ -41,6 +41,8 @@ export * from './PlayerList';
 export * from './RequestChunkRadius';
 export * from './ChunkRadiusUpdate';
 // Gap
+export * from './ModalFormRequest';
+// Gap
 export * from './SetLocalPlayerAsInitialized';
 // Gap
 export * from './NetworkChunkPublisherUpdate';
