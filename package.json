@@ -1,6 +1,6 @@
 {
 	"name": "@serenityjs/protocol",
-	"version": "1.0.6",
+	"version": "1.1.0",
 	"description": "Minecraft Bedrock Edition protocol written in Typescript.",
 	"contributors": [
 		"PMK744",
@@ -25,8 +25,8 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
-		"@serenityjs/binarystream": "file:../binarystream",
-		"@serenityjs/raknet.js": "file:../raknet.js"
+		"@serenityjs/binarystream": "^1.1.0",
+		"@serenityjs/raknet.js": "^1.2.2"
 	},
 	"typings": "./dist/index.d.ts",
 	"module": "./dist/index.js",
