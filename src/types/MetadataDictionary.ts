@@ -1,4 +1,5 @@
-import { DataType, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface Metadata {
@@ -18,7 +19,7 @@ class MetadataDictionary extends DataType {
 			let value: bigint | boolean | number | string | null = null;
 			switch (type) {
 				case 0:
-					value = stream.readUInt8();
+					value = stream.readUint8();
 					break;
 				case 1:
 					value = stream.readInt16(Endianness.Little);
@@ -27,7 +28,7 @@ class MetadataDictionary extends DataType {
 					value = stream.readZigZag();
 					break;
 				case 3:
-					value = stream.readLF32();
+					value = stream.readFloat32(Endianness.Little);
 					break;
 				case 4:
 					value = stream.readBigString();
@@ -68,7 +69,7 @@ class MetadataDictionary extends DataType {
 				stream.writeVarInt(metadata.type);
 				switch (metadata.type) {
 					case 0:
-						stream.writeUInt8(metadata.value as number);
+						stream.writeUint8(metadata.value as number);
 						break;
 					case 1:
 						stream.writeInt16(metadata.value as number, Endianness.Little);
@@ -77,7 +78,7 @@ class MetadataDictionary extends DataType {
 						stream.writeZigZag(metadata.value as number);
 						break;
 					case 3:
-						stream.writeLF32(metadata.value as number);
+						stream.writeFloat32(metadata.value as number, Endianness.Little);
 						break;
 					case 4:
 						stream.writeBigString(metadata.value as string);

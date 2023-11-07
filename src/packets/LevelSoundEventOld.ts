@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Bool, UInt8, VarInt, ZigZag } from 'binarystream.js';
+import { Packet, Serialize, Bool, UInt8, VarInt, ZigZag } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { Vec3f, Vector3f } from '../types';
 

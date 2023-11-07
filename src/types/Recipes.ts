@@ -1,4 +1,4 @@
-import { DataType } from 'binarystream.js';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 import { ItemLegacy, RecipeIngredient } from '.';
 import type { IRecipeIngredient, IItemLegacy } from '.';

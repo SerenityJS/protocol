@@ -1,4 +1,4 @@
-import { DataType } from 'binarystream.js';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface Tokens {

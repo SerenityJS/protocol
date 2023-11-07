@@ -1,6 +1,6 @@
 import type { Buffer } from 'node:buffer';
-import type { Endianness } from 'binarystream.js';
-import { DataType } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 enum PlayerListType {
@@ -31,9 +31,9 @@ class PlayerListRecords extends DataType {
 				const username = stream.readBigString();
 				const xuid = stream.readBigString();
 				const platformChatId = stream.readBigString();
-				const buildPlatform = stream.readLF32();
-				const len = stream.getBuffer().byteLength - stream.getReadOffset() - length - 2;
-				const skinData = stream.read(len);
+				const buildPlatform = stream.readFloat32(Endianness.Little);
+				const len = stream.getBuffer().byteLength - stream.offset - length - 2;
+				const skinData = stream.readBuffer(len);
 				const isTeacher = stream.readBool();
 				const isHost = stream.readBool();
 				playerListRecords.push({
@@ -69,8 +69,8 @@ class PlayerListRecords extends DataType {
 				stream.writeBigString(playerListRecord.username!);
 				stream.writeBigString(playerListRecord.xuid!);
 				stream.writeBigString(playerListRecord.platformChatId!);
-				stream.writeLF32(playerListRecord.buildPlatform!);
-				stream.write(playerListRecord.skinData!);
+				stream.writeFloat32(playerListRecord.buildPlatform!, Endianness.Little);
+				stream.writeBuffer(playerListRecord.skinData!);
 				stream.writeBool(playerListRecord.isTeacher!);
 				stream.writeBool(playerListRecord.isHost!);
 			}

@@ -1,4 +1,5 @@
-import { DataType, Endianness, BinaryStream } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface ItemOld {
@@ -25,7 +26,7 @@ class ItemsOld extends DataType {
 		const buffer = new BinaryStream();
 		buffer.writeVarInt(value.length);
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

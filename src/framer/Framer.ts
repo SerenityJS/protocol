@@ -1,5 +1,5 @@
 import type { Buffer } from 'node:buffer';
-import { BinaryStream } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
 
 /**
  * A class that can frame and unframe packet buffers.
@@ -11,7 +11,7 @@ class Framer {
 		// Read all the frames, until the end of the buffer
 		do {
 			const length = stream.readVarInt();
-			const frame = stream.read(length);
+			const frame = stream.readBuffer(length);
 			frames.push(frame);
 		} while (!stream.cursorAtEnd());
 
@@ -24,7 +24,7 @@ class Framer {
 		// Write all the buffers, with their length
 		for (const buffer of buffers) {
 			stream.writeVarInt(buffer.length);
-			stream.write(buffer);
+			stream.writeBuffer(buffer);
 		}
 
 		// Return the buffer

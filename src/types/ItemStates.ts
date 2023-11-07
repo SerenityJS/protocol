@@ -1,4 +1,5 @@
-import { DataType, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface ItemState {

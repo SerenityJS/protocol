@@ -1,4 +1,5 @@
-import { DataType, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 import type { AbilityLayerType } from '../enums';
 import { AbilityLayerFlag } from '../enums';
@@ -23,15 +24,15 @@ interface EncodedAbilityFlags {
 class AbilityLayers extends DataType {
 	public static read(stream: Encapsulated): AbilityLayer[] {
 		const layers: AbilityLayer[] = [];
-		const length = stream.readUInt8();
+		const length = stream.readUint8();
 		for (let i = 0; i < length; i++) {
 			const type = stream.readShort(Endianness.Little);
 			const flags = this.decodeFlags({
-				flagsHash: stream.readUInt32(Endianness.Little),
-				valuesHash: stream.readUInt32(Endianness.Little),
+				flagsHash: stream.readUint32(Endianness.Little),
+				valuesHash: stream.readUint32(Endianness.Little),
 			});
-			const flySpeed = stream.readLF32();
-			const walkSpeed = stream.readLF32();
+			const flySpeed = stream.readFloat32(Endianness.Little);
+			const walkSpeed = stream.readFloat32(Endianness.Little);
 
 			layers.push({ type, flags, flySpeed, walkSpeed });
 		}
@@ -39,14 +40,14 @@ class AbilityLayers extends DataType {
 		return layers;
 	}
 	public static write(stream: Encapsulated, value: AbilityLayer[]): void {
-		stream.writeUInt8(value.length);
+		stream.writeUint8(value.length);
 		for (const layer of value) {
 			stream.writeInt16(layer.type, Endianness.Little);
 			const flags = this.encodeFlags(layer.flags);
-			stream.writeUInt32(flags.flagsHash, Endianness.Little);
-			stream.writeUInt32(flags.valuesHash, Endianness.Little);
-			stream.writeLF32(layer.flySpeed);
-			stream.writeLF32(layer.walkSpeed);
+			stream.writeUint32(flags.flagsHash, Endianness.Little);
+			stream.writeUint32(flags.valuesHash, Endianness.Little);
+			stream.writeFloat32(layer.flySpeed, Endianness.Little);
+			stream.writeFloat32(layer.walkSpeed, Endianness.Little);
 		}
 	}
 

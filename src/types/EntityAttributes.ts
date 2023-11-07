@@ -1,4 +1,5 @@
-import { DataType, BinaryStream } from 'binarystream.js';
+import { BinaryStream, Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface EntityAttribute {
@@ -14,9 +15,9 @@ class EntityAttributes extends DataType {
 		const length = stream.readVarInt();
 		for (let i = 0; i < length; i++) {
 			const name = stream.readBigString();
-			const min = stream.readLF32();
-			const value = stream.readLF32();
-			const max = stream.readLF32();
+			const min = stream.readFloat32(Endianness.Little);
+			const value = stream.readFloat32(Endianness.Little);
+			const max = stream.readFloat32(Endianness.Little);
 			attributes.push({ name, min, value, max });
 		}
 
@@ -27,12 +28,12 @@ class EntityAttributes extends DataType {
 		buffer.writeVarInt(value.length);
 		for (const attribute of value) {
 			buffer.writeBigString(attribute.name);
-			buffer.writeLF32(attribute.min);
-			buffer.writeLF32(attribute.value);
-			buffer.writeLF32(attribute.max);
+			buffer.writeFloat32(attribute.min, Endianness.Little);
+			buffer.writeFloat32(attribute.value, Endianness.Little);
+			buffer.writeFloat32(attribute.max, Endianness.Little);
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

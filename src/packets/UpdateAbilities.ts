@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Int64, Endianness, UInt8 } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, VarInt, Int64, UInt8 } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { PermissionLevel } from '../enums';
 import type { AbilityLayer } from '../types';

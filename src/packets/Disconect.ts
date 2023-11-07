@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, ZigZag, Bool, BigString } from 'binarystream.js';
+import { Packet, Serialize, VarInt, ZigZag, Bool, BigString } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 
 enum DisconectReason {

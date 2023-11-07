@@ -1,4 +1,5 @@
-import { DataType, BinaryStream } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface PackIdVersion {
@@ -21,15 +22,12 @@ class PackIdVersions extends DataType {
 		return packs;
 	}
 	public static write(stream: Encapsulated, value: PackIdVersion[]): void {
-		const buffer = new BinaryStream();
-		buffer.writeVarInt(value.length);
+		stream.writeVarInt(value.length);
 		for (const pack of value) {
 			stream.writeBigString(pack.uuid);
 			stream.writeBigString(pack.version);
 			stream.writeBigString(pack.name);
 		}
-
-		stream.write(buffer.getBuffer());
 	}
 }
 

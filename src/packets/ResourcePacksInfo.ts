@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Bool } from 'binarystream.js';
+import { Packet, Serialize, VarInt, Bool } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import type { BehaviorPack, ResourcePack, PackLink } from '../types';
 import { BehaviorPackInfo, ResourcePackInfo, PackLinks } from '../types';

@@ -1,4 +1,5 @@
-import { DataType, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 enum RecipeIngredientType {
@@ -43,7 +44,7 @@ type IRecipeIngredient = {
 
 class RecipeIngredient extends DataType {
 	public static read(stream: Encapsulated): IRecipeIngredient {
-		const type: RecipeIngredientType = stream.readUInt8();
+		const type: RecipeIngredientType = stream.readUint8();
 
 		let recipe: IRecipeIngredient;
 
@@ -62,7 +63,7 @@ class RecipeIngredient extends DataType {
 
 			case RecipeIngredientType.MolangItem: {
 				const expression = stream.readBigString();
-				const version = stream.readUInt8();
+				const version = stream.readUint8();
 
 				const count = stream.readZigZag();
 				recipe = { type, expression, version, count };
@@ -109,7 +110,7 @@ class RecipeIngredient extends DataType {
 		return recipe;
 	}
 	public static write(stream: Encapsulated, value: IRecipeIngredient): void {
-		stream.writeUInt8(value.type);
+		stream.writeUint8(value.type);
 
 		switch (value.type) {
 			case RecipeIngredientType.DefaultItem: {
@@ -120,7 +121,7 @@ class RecipeIngredient extends DataType {
 
 			case RecipeIngredientType.MolangItem: {
 				stream.writeBigString(value.expression);
-				stream.writeUInt8(value.version);
+				stream.writeUint8(value.version);
 				break;
 			}
 

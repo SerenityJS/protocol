@@ -1,4 +1,5 @@
-import { DataType, Endianness, BinaryStream } from 'binarystream.js';
+import { BinaryStream, Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface GameRule {
@@ -25,7 +26,7 @@ class GameRules extends DataType {
 					value = stream.readZigZag();
 					break;
 				case 3:
-					value = stream.readLF32();
+					value = stream.readFloat32(Endianness.Little);
 					break;
 				default:
 					console.log(`Unknown game rule type: ${type}`);
@@ -54,14 +55,14 @@ class GameRules extends DataType {
 					break;
 				case 3:
 					buffer.writeVarInt(3);
-					buffer.writeFloat(pack.value as number);
+					buffer.writeFloat32(pack.value as number, Endianness.Little);
 					break;
 				default:
 					throw new Error(`Unknown game rule type: ${pack.type}`);
 			}
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

@@ -1,4 +1,5 @@
-import { DataType, BinaryStream } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface Vec3f {
@@ -9,16 +10,16 @@ interface Vec3f {
 
 class Vector3f extends DataType {
 	public static read(stream: Encapsulated): Vec3f {
-		const x = stream.readLF32();
-		const y = stream.readLF32();
-		const z = stream.readLF32();
+		const x = stream.readFloat32(Endianness.Little);
+		const y = stream.readFloat32(Endianness.Little);
+		const z = stream.readFloat32(Endianness.Little);
 
 		return { x, y, z };
 	}
 	public static write(stream: Encapsulated, value: Vec3f): void {
-		stream.writeLF32(value.x);
-		stream.writeLF32(value.y);
-		stream.writeLF32(value.z);
+		stream.writeFloat32(value.x, Endianness.Little);
+		stream.writeFloat32(value.y, Endianness.Little);
+		stream.writeFloat32(value.z, Endianness.Little);
 	}
 }
 

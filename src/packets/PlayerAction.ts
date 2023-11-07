@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, VarLong, ZigZag } from 'binarystream.js';
+import { Packet, Serialize, VarInt, VarLong, ZigZag } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { Action } from '../enums';
 import { BlockCoordinate, BlockCoordinates } from '../types';

@@ -1,13 +1,13 @@
 import type { Buffer } from 'node:buffer';
-import { DataType } from 'binarystream.js';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 class Biomes extends DataType {
 	public static read(stream: Encapsulated): Buffer {
-		return stream.readRemaining();
+		return stream.readRemainingBuffer();
 	}
 	public static write(stream: Encapsulated, value: Buffer): void {
-		stream.write(value);
+		stream.writeBuffer(value);
 	}
 }
 

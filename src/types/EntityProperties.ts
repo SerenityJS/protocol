@@ -1,4 +1,5 @@
-import { DataType } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface EntityProperty {
@@ -26,7 +27,7 @@ class EntityProperties extends DataType {
 		const floatsLength = stream.readVarInt();
 		for (let i = 0; i < floatsLength; i++) {
 			const index = stream.readVarInt();
-			const value = stream.readLF32();
+			const value = stream.readFloat32(Endianness.Little);
 
 			props.floats.push({ index, value });
 		}
@@ -43,7 +44,7 @@ class EntityProperties extends DataType {
 		stream.writeVarInt(value.floats.length);
 		for (const prop of value.floats) {
 			stream.writeVarInt(prop.index);
-			stream.writeLF32(prop.value);
+			stream.writeFloat32(prop.value, Endianness.Little);
 		}
 	}
 }

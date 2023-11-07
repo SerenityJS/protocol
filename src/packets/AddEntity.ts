@@ -1,17 +1,8 @@
-import type { Buffer } from 'node:buffer';
-import { Packet, Serialize } from '@serenityjs/raknet.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, BigString, Float32, VarInt, VarLong, ZigZong } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
-import { BigString, LF32, VarInt, VarLong, ZigZong } from 'binarystream.js';
-import {
-	Vec3f,
-	Vector3f,
-	EntityAttribute,
-	EntityAttributes,
-	EntityProperties,
-	EntityProperty,
-	EntityLinks,
-	EntityLink,
-} from '../types';
+import type { EntityAttribute, EntityLink } from '../types';
+import { Vec3f, Vector3f, EntityAttributes, EntityProperties, EntityProperty, EntityLinks } from '../types';
 
 @Packet(0x0d, VarInt)
 class AddEntity extends Encapsulated {
@@ -22,10 +13,10 @@ class AddEntity extends Encapsulated {
 	@Serialize(Vector3f) public position!: Vec3f;
 	@Serialize(Vector3f) public motion!: Vec3f;
 
-	@Serialize(LF32) public pitch!: number;
-	@Serialize(LF32) public yaw!: number;
-	@Serialize(LF32) public headYaw!: number;
-	@Serialize(LF32) public bodyYaw!: number;
+	@Serialize(Float32, Endianness.Little) public pitch!: number;
+	@Serialize(Float32, Endianness.Little) public yaw!: number;
+	@Serialize(Float32, Endianness.Little) public headYaw!: number;
+	@Serialize(Float32, Endianness.Little) public bodyYaw!: number;
 
 	@Serialize(EntityAttributes) public attributes!: EntityAttribute[];
 

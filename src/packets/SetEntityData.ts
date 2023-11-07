@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Endianness, VarLong } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, VarInt, VarLong } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import type { Metadata } from '../types';
 import { MetadataDictionary, EntityProperties, EntityProperty } from '../types';

@@ -1,4 +1,5 @@
-import { DataType, BinaryStream, Endianness } from 'binarystream.js';
+import { BinaryStream, Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface Experiment {
@@ -26,7 +27,7 @@ class Experiments extends DataType {
 			buffer.writeBool(pack.enabled);
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

@@ -1,4 +1,5 @@
-import { BinaryStream, DataType } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface EntityLink {
@@ -16,7 +17,7 @@ class EntityLinks extends DataType {
 		for (let i = 0; i < length; i++) {
 			const riddenEntityId = stream.readZigZong();
 			const riderEntityId = stream.readZigZong();
-			const type = stream.readUInt8();
+			const type = stream.readUint8();
 			const immediate = stream.readBool();
 			const riderInitiated = stream.readBool();
 			links.push({ riddenEntityId, riderEntityId, type, immediate, riderInitiated });
@@ -30,12 +31,12 @@ class EntityLinks extends DataType {
 		for (const link of value) {
 			buffer.writeZigZong(link.riddenEntityId);
 			buffer.writeZigZong(link.riderEntityId);
-			buffer.writeUInt8(link.type);
+			buffer.writeUint8(link.type);
 			buffer.writeBool(link.immediate);
 			buffer.writeBool(link.riderInitiated);
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

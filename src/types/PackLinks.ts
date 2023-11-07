@@ -1,4 +1,5 @@
-import { DataType, BinaryStream } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface PackLink {
@@ -26,7 +27,7 @@ class PackLinks extends DataType {
 			stream.writeBigString(pack.url);
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

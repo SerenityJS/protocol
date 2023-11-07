@@ -1,5 +1,5 @@
-import type { Endianness } from 'binarystream.js';
-import { DataType } from 'binarystream.js';
+import type { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 // TODO: Parse the JSON data

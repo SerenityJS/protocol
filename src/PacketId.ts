@@ -1,5 +1,5 @@
 import type { Buffer } from 'node:buffer';
-import { BinaryStream } from 'binarystream.js';
+import { BinaryStream } from '@serenityjs/binarystream';
 
 /**
  * Get the packet ID from a buffer. ( VarInt )

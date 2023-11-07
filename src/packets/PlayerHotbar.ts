@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Bool, Int8, VarInt } from 'binarystream.js';
+import { Bool, Int8, VarInt, Packet, Serialize } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { WindowId } from '../enums';
 

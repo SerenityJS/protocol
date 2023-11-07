@@ -1,11 +1,10 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
+import { Endianness } from '@serenityjs/binarystream';
 import {
-	Endianness,
 	VarInt,
 	ZigZag,
 	Bool,
 	UInt8,
-	LF32,
+	Float32,
 	Int16,
 	Int32,
 	Int64,
@@ -14,7 +13,9 @@ import {
 	UInt64,
 	BigString,
 	Uuid,
-} from 'binarystream.js';
+	Packet,
+	Serialize,
+} from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { Gamemode, PermissionLevel, Difficulty } from '../enums';
 import type { GameRule, Experiment, BlockProperty, ItemState } from '../types';
@@ -57,8 +58,8 @@ class StartGame extends Encapsulated {
 	@Serialize(ZigZag) public eduOffer!: number;
 	@Serialize(Bool) public eduFeatures!: boolean;
 	@Serialize(BigString) public eduProductUuid!: string;
-	@Serialize(LF32) public rainLevel!: number;
-	@Serialize(LF32) public lightningLevel!: number;
+	@Serialize(Float32, Endianness.Little) public rainLevel!: number;
+	@Serialize(Float32, Endianness.Little) public lightningLevel!: number;
 	@Serialize(Bool) public confirmedPlatformLockedContent!: boolean;
 	@Serialize(Bool) public multiplayerGame!: boolean;
 	@Serialize(Bool) public broadcastToLan!: boolean;

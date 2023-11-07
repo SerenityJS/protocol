@@ -1,4 +1,5 @@
-import { DataType, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 interface ResourcePack {
@@ -19,7 +20,7 @@ class ResourcePackInfo extends DataType {
 		for (let i = 0; i < length; i++) {
 			const uuid = stream.readBigString();
 			const version = stream.readBigString();
-			const size = stream.readUInt32(Endianness.Little);
+			const size = stream.readUint32(Endianness.Little);
 			const contentKey = stream.readBigString();
 			const subPackName = stream.readBigString();
 			const contentIdentity = stream.readBigString();
@@ -35,7 +36,7 @@ class ResourcePackInfo extends DataType {
 		for (const pack of value) {
 			stream.writeBigString(pack.uuid);
 			stream.writeBigString(pack.version);
-			stream.writeUInt32(pack.size, Endianness.Little);
+			stream.writeUint32(pack.size, Endianness.Little);
 			stream.writeBigString(pack.contentKey);
 			stream.writeBigString(pack.subPackName);
 			stream.writeBigString(pack.contentIdentity);

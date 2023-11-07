@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Long, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { VarInt, Long, Packet, Serialize } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 
 @Packet(0x17, VarInt)

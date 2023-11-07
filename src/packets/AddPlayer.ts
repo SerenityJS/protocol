@@ -1,5 +1,17 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, Endianness, Uuid, BigString, VarLong, LF32, ZigZag, Int64, UInt8, Int32 } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import {
+	Packet,
+	Serialize,
+	VarInt,
+	Uuid,
+	BigString,
+	VarLong,
+	Float32,
+	ZigZag,
+	Int64,
+	UInt8,
+	Int32,
+} from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { PermissionLevel, Gamemode } from '../enums';
 import { Vec3f, Vector3f, Vec2f, Vector2f } from '../types';
@@ -13,7 +25,7 @@ class AddPlayer extends Encapsulated {
 	@Serialize(Vector3f) public position!: Vec3f;
 	@Serialize(Vector3f) public velocity!: Vec3f;
 	@Serialize(Vector2f) public rotation!: Vec2f;
-	@Serialize(LF32) public headYaw!: number;
+	@Serialize(Float32, Endianness.Little) public headYaw!: number;
 	@Serialize(ZigZag) public item!: number;
 	@Serialize(ZigZag) public gamemode!: Gamemode;
 	@Serialize(VarInt) public metadata!: number;

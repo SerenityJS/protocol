@@ -1,5 +1,4 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Bool, VarInt } from 'binarystream.js';
+import { Packet, Serialize, Bool, VarInt } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import type { MaterialReducer, PotionContainerRecipe, PotionRecipe, Recipe } from '../types';
 import { MaterialReducers, PotionContainerRecipes, PotionRecipes, Recipes } from '../types';

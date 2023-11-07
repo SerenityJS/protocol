@@ -1,8 +1,6 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Bool, Int8, VarInt, ZigZong } from 'binarystream.js';
+import { Bool, Int8, VarInt, Packet, Serialize } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
-import { WindowId, WindowType } from '../enums';
-import { BlockCoordinate, BlockCoordinates } from '../types';
+import { WindowId } from '../enums';
 
 @Packet(0x2f, VarInt)
 class ContainerClose extends Encapsulated {

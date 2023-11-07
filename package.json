@@ -25,8 +25,8 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
-		"@serenityjs/raknet.js": "^1.1.1",
-		"binarystream.js": "^0.2.5"
+		"@serenityjs/binarystream": "file:../binarystream",
+		"@serenityjs/raknet.js": "file:../raknet.js"
 	},
 	"typings": "./dist/index.d.ts",
 	"module": "./dist/index.js",

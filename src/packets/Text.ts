@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, UInt8, Bool, Endianness, BigString } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, VarInt, UInt8, Bool, BigString } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { ChatTypes } from '../enums';
 import { TextSource, TextParameters } from '../types';

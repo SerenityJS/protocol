@@ -1,4 +1,5 @@
-import { DataType, BinaryStream, Endianness } from 'binarystream.js';
+import { BinaryStream, Endianness } from '@serenityjs/binarystream';
+import { DataType } from '@serenityjs/raknet.js';
 import type { Encapsulated } from '../Encapsulated';
 
 class ResourcePackIds extends DataType {
@@ -19,7 +20,7 @@ class ResourcePackIds extends DataType {
 			stream.writeBigString(pack);
 		}
 
-		stream.write(buffer.getBuffer());
+		stream.writeBuffer(buffer.getBuffer());
 	}
 }
 

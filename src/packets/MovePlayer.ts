@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { VarInt, LF32, UInt8, Bool, VarLong, Endianness } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, VarInt, Float32, UInt8, Bool, VarLong } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { Vec3f, Vector3f, MovementCause, MoveMode, TeleportCause } from '../types';
 
@@ -7,9 +7,9 @@ import { Vec3f, Vector3f, MovementCause, MoveMode, TeleportCause } from '../type
 class MovePlayer extends Encapsulated {
 	@Serialize(VarLong) public runtimeId!: bigint;
 	@Serialize(Vector3f) public position!: Vec3f;
-	@Serialize(LF32) public pitch!: number;
-	@Serialize(LF32) public yaw!: number;
-	@Serialize(LF32) public headYaw!: number;
+	@Serialize(Float32, Endianness.Little) public pitch!: number;
+	@Serialize(Float32, Endianness.Little) public yaw!: number;
+	@Serialize(Float32, Endianness.Little) public headYaw!: number;
 	@Serialize(UInt8) public mode!: MoveMode;
 	@Serialize(Bool) public onGround!: boolean;
 	@Serialize(VarLong) public ridingRuntimeId!: bigint;

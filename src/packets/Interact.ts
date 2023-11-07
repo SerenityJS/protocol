@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Endianness, UInt8, VarInt, VarLong } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, UInt8, VarInt, VarLong } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { InteractActions } from '../enums';
 import { Vec3f, InteractPosition } from '../types';

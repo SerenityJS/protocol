@@ -1,5 +1,5 @@
-import { Packet, Serialize } from '@serenityjs/raknet.js';
-import { Bool, Endianness, VarInt } from 'binarystream.js';
+import { Endianness } from '@serenityjs/binarystream';
+import { Packet, Serialize, Bool, VarInt } from '@serenityjs/raknet.js';
 import { Encapsulated } from '../Encapsulated';
 import { FormData, FormCanceledReason } from '../types';
 
